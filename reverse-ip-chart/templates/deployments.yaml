@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}  # This sets the name of your deployment based on the Helm release name
+spec:
+  replicas: 1  # Number of pod replicas you want to run
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}  # Labels to match the pods
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}  # Labels for the pod template
+    spec:
+      containers:
+      - name: {{ .Release.Name }}  # Name of the container
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"  # Image specification
+        ports:
+        - containerPort: 5000  # Port that the container exposes

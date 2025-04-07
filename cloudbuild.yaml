@@ -1,0 +1,8 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/reverse-ip-51286/my-image', '.']
+    id: 'Build Image'
+  
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/reverse-ip-51286/my-image']
+    id: 'Push Image'
