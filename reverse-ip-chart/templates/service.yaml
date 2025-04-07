@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: reverse-ip-app
+  name: {{ include "reverse-ip-chart.fullname" . }}
+  labels:
+    {{ include "reverse-ip-chart.labels" . | nindent 4 }}
 spec:
-  selector:
-    app: reverse-ip-app
+  type: {{ .Values.service.type }}
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
-  type: LoadBalancer
+  - port: {{ .Values.service.port }}
+    targetPort: {{ .Values.service.port }}
+  selector:
+    {{ include "reverse-ip-chart.selectorLabels" . | nindent 4 }}
+

@@ -1,12 +1,14 @@
 replicaCount: 1
 
 image:
-  repository: reverse-ip-app
+  repository: gcr.io/reverse-ip-51286/reverse-ip-app
   tag: latest
   pullPolicy: IfNotPresent
 
 service:
   type: LoadBalancer
-  port: 80
+  port: 8080
 
 resources: {}
+ingress:
+  enabled: false
